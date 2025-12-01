@@ -2,6 +2,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { prompts } from "@/utils/prompts";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
+import { toast } from "sonner";
+import { Check, Copy } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 const promptLibrary = {
   apresentation: {
@@ -36,8 +41,48 @@ const promptLibrary = {
   },
 };
 
+const theory = `
+  Atue como um Professor Curador de Engenharia com uma abordagem moderna, próxima e conversacional. Seu objetivo é criar o conteúdo introdutório para uma nova Unidade de Aprendizagem (UA).
+
+  TEMA DA UA: [ ? ]
+
+  Por favor, gere uma resposta estruturada exatamente nas duas seções abaixo:
+
+  ---
+
+  ## 1. Abertura Conversacional (O Texto)
+
+  Escreva uma introdução cativante. Não inicie com definições teóricas chatas. Siga este fluxo:
+
+  - **O Gancho (A Dor):** Comece descrevendo uma situação real de campo, um desastre evitado ou um desafio cotidiano da engenharia que se relaciona com o tema. Fale diretamente com o aluno ("Você já parou para pensar...").
+  - **A Solução:** Apresente o TEMA DA UA como a ferramenta fundamental para resolver esse problema.
+  - **O Mercado:** Finalize motivando o aluno, explicando por que dominar esse conceito fará dele um engenheiro mais valorizado e competente.
+
+  ---
+
+  ## 2. Experiência Visual (A Mídia)
+
+  Para enriquecer essa UA, descreva uma sugestão criativa de recurso visual que deve acompanhar o texto acima. Escolha a opção que melhor se adapta ao tema:
+
+  - **Opção A — Animação:** Escreva um breve roteiro (passo a passo) para uma animação que demonstre o conceito físico acontecendo.
+  - **Opção B — Infográfico/Imagem:** Descreva detalhadamente uma imagem ou esquema técnico que sintetize o tópico, incluindo cores sugeridas e elementos de destaque.
+`;
+
 export const PromptLibrary = () => {
-  const [activeTab, setActiveTab] = useState("theory");
+  const [activeTab, setActiveTab] = useState("apresentation");
+  const [copiedStates, setCopiedStates] = useState<Record<string, boolean>>({});
+
+  const handleCopy = async (promptKey: string) => {
+    const promptText = promptLibrary[promptKey as keyof typeof promptLibrary].prompt;
+    await navigator.clipboard.writeText(promptText);
+
+    setCopiedStates((prev) => ({ ...prev, [promptKey]: true }));
+    toast.success("Prompt copiado! Cole no seu chat de IA.");
+
+    setTimeout(() => {
+      setCopiedStates((prev) => ({ ...prev, [promptKey]: false }));
+    }, 2000);
+  };
 
   return (
     <section
@@ -92,9 +137,47 @@ export const PromptLibrary = () => {
                 transition={{ duration: 0.4 }}
                 className="max-w-5xl mx-auto"
               >
-                <div className="flex-1 border rounded-lg p-4 bg-foreground/5">
-                  <p>{content.prompt}</p>
-                </div>
+                <Card className="border-2 p-6 space-y-4">
+                  <CardHeader className="flex gap-2 items-center">
+                    <div className="flex-1 space-y-2">
+                      <CardTitle className="text-2xl">{content.title}</CardTitle>
+                      <CardDescription className="text-sm leading-relaxed">{content.description}</CardDescription>
+                    </div>
+                    <div className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">{content.tool}</div>
+                  </CardHeader>
+                  <div className="flex-1 bg-foreground/5 rounded-lg p-4">
+                    <pre className="whitespace-pre-wrap">
+                      <code>{content.prompt}</code>
+                    </pre>
+                  </div>
+                </Card>
+
+                {/* <Button
+                  onClick={() => handleCopy(key)}
+                  variant="outline"
+                  size="icon-sm"
+                >
+                  {copiedStates[key] ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      Copiado
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4" />
+                      Copiar
+                    </>
+                  )}
+                </Button> */}
+
+                {/* <Card className="border-2 border-primary/20">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="text-xl">Prompt</CardTitle>
+                        
+                      </div>
+                    </CardHeader>
+                  </Card> */}
               </motion.div>
             </TabsContent>
           ))}

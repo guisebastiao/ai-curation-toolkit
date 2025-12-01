@@ -16,7 +16,10 @@ export const MarkdownMessage = ({ content }: MarkdownMessageProps) => {
         components={{
           pre({ children, ...props }) {
             return (
-              <pre className="rounded-lg bg-neutral-900 p-3 overflow-x-auto border border-neutral-700 my-3" {...props}>
+              <pre
+                className="rounded-lg bg-neutral-900 p-3 overflow-x-auto border my-3"
+                {...props}
+              >
                 {children}
               </pre>
             );
@@ -24,18 +27,25 @@ export const MarkdownMessage = ({ content }: MarkdownMessageProps) => {
           code({ inline, className, children, ...props }: any) {
             if (inline) {
               return (
-                <code className="bg-neutral-800 px-1.5 py-0.5 rounded text-[0.9em]" {...props}>
+                <code
+                  className="bg-neutral-800 px-1.5 py-0.5 rounded text-[0.9em]"
+                  {...props}
+                >
                   {children}
                 </code>
               );
             }
             return (
-              <code className={className} {...props}>
+              <code
+                className={className}
+                {...props}
+              >
                 {children}
               </code>
             );
           },
-        }}>
+        }}
+      >
         {content}
       </ReactMarkdown>
     </div>
