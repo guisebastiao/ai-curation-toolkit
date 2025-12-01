@@ -1,0 +1,15 @@
+export const AllowedTypes = [
+  "application/pdf",
+  "text/plain",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "text/csv",
+  "text/markdown",
+  "image/png",
+  "image/jpeg",
+  "image/webp",
+  "audio/mpeg",
+  "audio/wav",
+  "audio/x-wav",
+  "audio/mp4",
+  "audio/m4a",
+];
