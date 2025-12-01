@@ -1,5 +1,5 @@
 export const prompts = {
-  apresentation: `
+  presentation: `
     Atue como um Professor Curador de Engenharia com uma abordagem moderna, próxima e conversacional. Seu objetivo é criar o conteúdo introdutório para uma nova Unidade de Aprendizagem (UA).\n
 
     TEMA DA UA: [ ? ]
@@ -148,6 +148,15 @@ export const prompts = {
     Um documento de texto estruturado, organizado por tópicos, servindo como um guia completo para quem for desenvolver a ferramenta. NÃO escreva código de programação.
   `,
   quiz: `
+      Faça essas perguntas para o usuário.
+    1.Me ajude a criar um quiz divertido e interativo sobre [tema específico].
+    2.Público-alvo: [Descreva claramente o público que responderá ao quiz].
+    3.Número de perguntas: [Informe o número total de perguntas desejadas].
+    4.Estilo das perguntas: [Engraçadas, educativas, curiosas, desafiadoras].
+    5.Tipo de perguntas desejado: [Múltipla escolha, perguntas abertas, verdadeiro ou falso].
+    6.Sugestões adicionais: [Dificuldade das perguntas, se haverá pontuação ou não, feedback após respostas].
+    (Só faça o quiz quando todas as 6 perguntas sobre o quiz forem atendidas.)
+
   `,
   case: `
     Atue como um Consultor Pedagógico e Professor Especialista em Ensino Superior (Mestrado/Doutorado).
