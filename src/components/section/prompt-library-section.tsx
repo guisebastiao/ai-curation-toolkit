@@ -10,16 +10,16 @@ import { toast } from "sonner";
 
 const promptLibrary = {
   presentation: {
-    tool: "Gemini Pro 3.0",
+    tool: "NotebookLM",
     label: "Apresentação",
     title: "Apresentação de Conteúdo",
     description: "Gere roteiros de vídeo e apresentações cativantes a partir dos seus materiais.",
     prompt: prompts.presentation,
     instructions: [
-      "Clique no botão copiar abaixo para pegar o prompt.",
-      "Abra o NotebookLM na nova aba que será carregada.",
-      "Faça o upload dos seus PDFs ou textos de referência na ferramenta.",
-      "Cole o prompt no chat e aguarde a mágica acontecer.",
+      "Clique no botão copiar abaixo para pegar o prompt e ser redirecionado.",
+      "Cole o prompt e siga as instruções da IA.",
+      "Ao final da interação, use o prompt gerado no NotebookLM",
+      'Suba seus materiais, e na ferramenta "Resumo em vídeo" cole o prompt gerado.',
     ],
   },
   theory: {
@@ -29,10 +29,10 @@ const promptLibrary = {
     description: "Estruture uma unidade de aprendizagem completa com base na ABNT.",
     prompt: prompts.theory,
     instructions: [
-      "Clique no botão copiar abaixo.",
+      "Clique no botão copiar e redirecionar.",
       "No Gemini, cole o prompt para iniciar a 'Máquina de Estados'.",
       "O Chat pedirá o nome da UA e os arquivos.",
-      "Copie e cole o conteúdo gerado para o seu documento oficial.",
+      "Copie e cole o conteúdo gerado a cada interação, após sua validação.",
     ],
   },
   practice: {
@@ -42,10 +42,10 @@ const promptLibrary = {
     description: "Crie especificações funcionais para simuladores e jogos educacionais.",
     prompt: prompts.practice,
     instructions: [
-      "Copie o prompt clicando no botão.",
-      "Inicie um novo chat no Gemini.",
-      "Informe o Conceito Chave e o Público Alvo quando solicitado.",
-      "O prompt gerará uma especificação técnica para desenvolvedores.",
+      "Copie o prompt clicando no botão e você será redirecionado.",
+      "Cole o prompt e siga as instruções da IA",
+      "Copie o prompt final gerado e cole em uma nova conversa",
+      "O prompt gerará um simulador interativo",
     ],
   },
   case: {
@@ -56,8 +56,8 @@ const promptLibrary = {
     prompt: prompts.case,
     instructions: [
       "Tenha em mãos o PDF/Texto do caso real (notícia ou relatório).",
-      "Clique em copiar e vá para o Gemini.",
-      "Cole o prompt e anexe o seu arquivo PDF.",
+      "Clique no botão ao lado e cole o conteúdo no chat.",
+      "Siga as instruções da IA",
       "A IA criará o material do aluno e o guia do professor.",
     ],
   },
@@ -67,7 +67,7 @@ const promptLibrary = {
     title: "Gerador de Quiz Dinâmico",
     description: "Crie avaliações interativas e gamificadas instantaneamente.",
     prompt: prompts.quiz,
-    instructions: ["Copie o prompt.", "Cole no chat da IA.", "Responda às 6 perguntas de configuração (Público, Qtd Perguntas, etc).", "Receba o quiz formatado pronto para uso."],
+    instructions: ["Clique no botão para copiar o prompt e ser redirecionado.", "Cole no chat da IA.", "Siga as instruções da IA", "No final da interação, copie o prompt gerado e cole em uma nova conversa."],
   },
 };
 
