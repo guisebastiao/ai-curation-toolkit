@@ -125,24 +125,6 @@
   color: transparent;
 }
 
-@layer utilities {
-  @keyframes dots-animation {
-    0% {
-      opacity: 0.2;
-    }
-    20% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0.2;
-    }
-  }
-
-  .animate-dots-animation {
-    animation: dots-animation 1s infinite ease-in-out;
-  }
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -167,8 +149,4 @@
 *::-webkit-scrollbar-thumb {
   background-color: #fff;
   border-radius: 5px;
-}
-
-code {
-  width: 80px;
 }

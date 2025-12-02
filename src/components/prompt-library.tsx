@@ -101,9 +101,8 @@ export const PromptLibrary = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Biblioteca de Prompts</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Prompts especializados. Selecione o tipo de conteúdo e siga as instruções.</p>
         </motion.div>
-
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full flex flex-col items-center">
-          <TabsList className="inline-flex h-auto p-1 bg-zinc-900/80 backdrop-blur-sm rounded-full text-zinc-400 mb-12 border border-white/10">
+          <TabsList className="inline-flex h-auto p-1 bg-zinc-900/80 backdrop-blur-sm rounded-3xl text-zinc-400 mb-12 border border-white/10">
             {Object.entries(promptLibrary).map(([key, content]) => (
               <TabsTrigger key={key} value={key} className="rounded-full px-6 py-2 text-sm font-medium transition-all data-[state=active]:bg-zinc-700 data-[state=active]:text-white">
                 {content.label}
