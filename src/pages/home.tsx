@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
 import { MethodologySection } from "@/components/methodology-section";
@@ -11,6 +12,7 @@ export const Home = () => {
       <HeroSection />
       <MethodologySection />
       <PromptLibrary />
+      <Footer />
     </Fragment>
   );
 };
