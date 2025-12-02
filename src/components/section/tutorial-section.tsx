@@ -33,7 +33,11 @@ const tutorialSteps: TutorialStep[] = [
       "Você será redirecionado para o Gemini com o prompt na sua area de transferência.",
       "Agora você faz um CTRL + V e o prompt será colado no chat.",
       "Após isso inicie o chat com ENTER.",
-      "E siga as instruções que a IA mandar",
+      "E siga as instruções que a IA mandar.",
+      "A IA gerará um prompt para usar no NotebookLM.",
+      "Copie o prompt final, abra o NotebookLM e crie um novo notebook.",
+      'Suba suas fontes, e use a ferramenta à direita "Resumo em Vídeo".',
+      "Clique no ícone de lápis da ferramenta e cole o prompt copiado.",
     ],
   },
   {
@@ -52,14 +56,16 @@ const tutorialSteps: TutorialStep[] = [
   {
     id: "practice",
     title: "Gerar Prática",
-    description: "Cria exercícios, atividades e simulações baseadas no conteúdo, com desafios progressivos e aplicação prática.",
+    description: "Cria simulações baseadas no conteúdo, com aplicação prática.",
     icon: <Code2 className="size-5" />,
     tutorial: [
       "Clique no botão 'Copiar e Abrir IA'",
       "Você será redirecionado para o Gemini com o prompt na sua area de transferência.",
       "Agora você faz um CTRL + V e o prompt será colado no chat.",
-      "Após isso inicie o chat com ENTER.",
+      "Após isso, inicie o chat com ENTER.",
       "E siga as instruções que a IA mandar",
+      "Ao final da interação você receberá um prompt para a geração do simulador",
+      "Basta copiar e colar esse prompt em um novo chat para gerar o simulador",
     ],
   },
   {
@@ -86,6 +92,8 @@ const tutorialSteps: TutorialStep[] = [
       "Agora você faz um CTRL + V e o prompt será colado no chat.",
       "Após isso inicie o chat com ENTER.",
       "E siga as instruções que a IA mandar",
+      "O conteúdo gerado será um prompt para a criação de um quiz",
+      "Copie esse prompt e cole em uma nova conversa (importante!)",
     ],
   },
 ];
