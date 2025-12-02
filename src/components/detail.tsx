@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useMemo, useCallback } from "react";
 
 const colors = ["bg-blue-500/25", "bg-violet-500/25", "bg-cyan-500/25", "bg-pink-500/25", "bg-emerald-500/25"];
-const blobsSize = 60;
+const blobsSize = 20;
 
 const seededRandom = (seed: number) => {
   const x = Math.sin(seed * 12.9898) * 43758.5453;
