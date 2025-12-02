@@ -10,7 +10,7 @@ import { toast } from "sonner";
 
 const promptLibrary = {
   presentation: {
-    tool: "NotebookLM",
+    tool: "Gemini Pro 3.0",
     label: "Apresentação",
     title: "Apresentação de Conteúdo",
     description: "Gere roteiros de vídeo e apresentações cativantes a partir dos seus materiais.",
@@ -81,13 +81,10 @@ export const PromptLibrary = () => {
 
     await navigator.clipboard.writeText(item.prompt);
 
-    const isNotebook = item.tool.includes("NotebookLM");
-    const targetUrl = isNotebook ? "https://notebooklm.google.com/" : "https://gemini.google.com/";
-
     setCopiedStates((prev) => ({ ...prev, [promptKey]: true }));
     toast.success("Prompt copiado!");
 
-    window.open(targetUrl, "_blank");
+    window.open("https://gemini.google.com/app", "_blank");
 
     setTimeout(() => {
       setCopiedStates((prev) => ({ ...prev, [promptKey]: false }));
