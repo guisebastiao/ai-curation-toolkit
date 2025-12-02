@@ -9,6 +9,6 @@ import { Toaster } from "sonner";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router} />
-    <Toaster />
+    <Toaster theme="dark" />
   </StrictMode>
 );

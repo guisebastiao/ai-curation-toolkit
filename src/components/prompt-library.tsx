@@ -1,13 +1,13 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Check, ArrowRight, Bot, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { prompts } from "@/utils/prompts";
+import { twMerge } from "tailwind-merge";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Card, CardDescription, CardHeader, CardTitle, CardContent, CardFooter } from "./ui/card";
-import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { Check, Copy, ArrowRight, BookOpen, Bot, FileText } from "lucide-react";
 
-// Adicionei o campo 'instructions' para cada item
 const promptLibrary = {
   presentation: {
     tool: "NotebookLM",
@@ -19,8 +19,8 @@ const promptLibrary = {
       "Clique no botão copiar abaixo para pegar o prompt.",
       "Abra o NotebookLM na nova aba que será carregada.",
       "Faça o upload dos seus PDFs ou textos de referência na ferramenta.",
-      "Cole o prompt no chat e aguarde a mágica acontecer."
-    ]
+      "Cole o prompt no chat e aguarde a mágica acontecer.",
+    ],
   },
   theory: {
     tool: "Gemini Pro 3.0",
@@ -32,8 +32,8 @@ const promptLibrary = {
       "Clique no botão copiar abaixo.",
       "No Gemini, cole o prompt para iniciar a 'Máquina de Estados'.",
       "O Chat pedirá o nome da UA e os arquivos.",
-      "Copie e cole o conteúdo gerado para o seu documento oficial."
-    ]
+      "Copie e cole o conteúdo gerado para o seu documento oficial.",
+    ],
   },
   practice: {
     tool: "Gemini Pro 3.0",
@@ -45,8 +45,8 @@ const promptLibrary = {
       "Copie o prompt clicando no botão.",
       "Inicie um novo chat no Gemini.",
       "Informe o Conceito Chave e o Público Alvo quando solicitado.",
-      "O prompt gerará uma especificação técnica para desenvolvedores."
-    ]
+      "O prompt gerará uma especificação técnica para desenvolvedores.",
+    ],
   },
   case: {
     tool: "Gemini Pro 3.0",
@@ -58,8 +58,8 @@ const promptLibrary = {
       "Tenha em mãos o PDF/Texto do caso real (notícia ou relatório).",
       "Clique em copiar e vá para o Gemini.",
       "Cole o prompt e anexe o seu arquivo PDF.",
-      "A IA criará o material do aluno e o guia do professor."
-    ]
+      "A IA criará o material do aluno e o guia do professor.",
+    ],
   },
   quiz: {
     tool: "Gemini Pro 3.0",
@@ -67,12 +67,7 @@ const promptLibrary = {
     title: "Gerador de Quiz Dinâmico",
     description: "Crie avaliações interativas e gamificadas instantaneamente.",
     prompt: prompts.quiz,
-    instructions: [
-      "Copie o prompt.",
-      "Cole no chat da IA.",
-      "Responda às 6 perguntas de configuração (Público, Qtd Perguntas, etc).",
-      "Receba o quiz formatado pronto para uso."
-    ]
+    instructions: ["Copie o prompt.", "Cole no chat da IA.", "Responda às 6 perguntas de configuração (Público, Qtd Perguntas, etc).", "Receba o quiz formatado pronto para uso."],
   },
 };
 
@@ -87,128 +82,76 @@ export const PromptLibrary = () => {
     await navigator.clipboard.writeText(item.prompt);
 
     const isNotebook = item.tool.includes("NotebookLM");
-    const targetUrl = isNotebook 
-      ? "https://notebooklm.google.com/" 
-      : "https://gemini.google.com/";
+    const targetUrl = isNotebook ? "https://notebooklm.google.com/" : "https://gemini.google.com/";
 
     setCopiedStates((prev) => ({ ...prev, [promptKey]: true }));
-    toast.success(`Prompt copiado! A abrir ${isNotebook ? "NotebookLM" : "Gemini"}...`);
+    toast.success("Prompt copiado!");
 
     window.open(targetUrl, "_blank");
 
     setTimeout(() => {
       setCopiedStates((prev) => ({ ...prev, [promptKey]: false }));
-    }, 2000);
+    }, 3000);
   };
 
   return (
-    <section id="library" className="py-24 px-4">
+    <section id="library" className="py-24 px-4" data-container="2">
       <div className="container mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-            Biblioteca de Prompts
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Prompts especializados. Selecione o tipo de conteúdo e siga as instruções.
-          </p>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Biblioteca de Prompts</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Prompts especializados. Selecione o tipo de conteúdo e siga as instruções.</p>
         </motion.div>
 
-        <Tabs
-          value={activeTab}
-          onValueChange={setActiveTab}
-          className="w-full flex flex-col items-center"
-        >
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full flex flex-col items-center">
           <TabsList className="inline-flex h-auto p-1 bg-zinc-900/80 backdrop-blur-sm rounded-full text-zinc-400 mb-12 border border-white/10">
             {Object.entries(promptLibrary).map(([key, content]) => (
-              <TabsTrigger
-                key={key}
-                value={key}
-                className="rounded-full px-6 py-2 text-sm font-medium transition-all data-[state=active]:bg-zinc-700 data-[state=active]:text-white"
-              >
+              <TabsTrigger key={key} value={key} className="rounded-full px-6 py-2 text-sm font-medium transition-all data-[state=active]:bg-zinc-700 data-[state=active]:text-white">
                 {content.label}
               </TabsTrigger>
             ))}
           </TabsList>
-
           {Object.entries(promptLibrary).map(([key, content]) => (
             <TabsContent key={key} value={key} className="mt-0 w-full">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="max-w-4xl mx-auto"
-              >
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="max-w-4xl mx-auto">
                 <Card className="border-2 bg-card/50 backdrop-blur-sm overflow-hidden">
                   <div className="grid md:grid-cols-5 gap-0">
-                    
-                    {/* COLUNA DA ESQUERDA: INFORMAÇÕES E PASSOS */}
                     <div className="md:col-span-3 p-8 flex flex-col justify-between space-y-8 border-r border-border/50">
                       <div>
                         <div className="flex items-center gap-3 mb-4">
-                           <div className="p-2 bg-primary/10 rounded-lg text-primary">
-                              {/* Ícone dinâmico simples baseada na tab, ou padrão */}
-                              <Bot className="w-6 h-6" />
-                           </div>
-                           <span className="text-sm font-mono text-muted-foreground uppercase tracking-wider">
-                             {content.tool}
-                           </span>
+                          <div className="p-2 bg-primary/10 rounded-lg text-primary">
+                            <Bot className="w-6 h-6" />
+                          </div>
+                          <span className="text-sm font-mono text-muted-foreground uppercase tracking-wider">{content.tool}</span>
                         </div>
-                        <h3 className="text-3xl font-bold mb-3 text-foreground">
-                          {content.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {content.description}
-                        </p>
+                        <h3 className="text-3xl font-bold mb-3 text-foreground">{content.title}</h3>
+                        <p className="text-muted-foreground leading-relaxed">{content.description}</p>
                       </div>
 
                       <div className="space-y-4">
-                        <h4 className="text-sm font-semibold uppercase tracking-wider text-primary">
-                          Como utilizar:
-                        </h4>
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-primary">Como utilizar:</h4>
                         <ul className="space-y-3">
                           {content.instructions.map((step, index) => (
                             <li key={index} className="flex gap-3 text-sm text-muted-foreground">
-                              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs font-bold text-foreground">
-                                {index + 1}
-                              </span>
+                              <span className="shrink-0 w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs font-bold text-foreground">{index + 1}</span>
                               <span className="pt-0.5">{step}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                     </div>
-
-                    {/* COLUNA DA DIREITA: AÇÃO PRINCIPAL */}
                     <div className="md:col-span-2 bg-muted/10 p-8 flex flex-col items-center justify-center text-center space-y-6">
-                      <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center mb-2">
+                      <div className="w-24 h-24 rounded-2xl bg-linear-to-br from-primary/20 to-purple-500/20 flex items-center justify-center mb-2">
                         <FileText className="w-10 h-10 text-primary" />
                       </div>
-                      
                       <div className="space-y-2">
                         <h4 className="font-semibold text-lg">Pronto para começar?</h4>
-                        <p className="text-xs text-muted-foreground px-4">
-                          O prompt completo será copiado para sua área de transferência.
-                        </p>
+                        <p className="text-xs text-muted-foreground px-4">O prompt completo será copiado para sua área de transferência.</p>
                       </div>
-
                       <Button
                         onClick={() => handleCopyRedirect(key)}
                         size="lg"
-                        className={`
-                          w-full max-w-[240px] shadow-lg transition-all duration-500
-                          ${copiedStates[key] 
-                            ? "bg-green-600 hover:bg-green-700 text-white" 
-                            : "hover:scale-105 text-white"
-                          }
-                        `}
-                      >
-                         {copiedStates[key] ? (
+                        className={twMerge("w-full max-w-60 shadow-lg transition-all duration-500", copiedStates[key] ? "bg-green-600 hover:bg-green-700 text-white" : "hover:scale-105 text-white")}>
+                        {copiedStates[key] ? (
                           <>
                             <Check className="mr-2 w-5 h-5" />
                             Copiado!
@@ -221,7 +164,6 @@ export const PromptLibrary = () => {
                         )}
                       </Button>
                     </div>
-
                   </div>
                 </Card>
               </motion.div>

@@ -22,7 +22,7 @@ const methodologyCards = [
 
 export const MethodologySection = () => {
   return (
-    <section id="methodology" className="py-24 px-4">
+    <section id="methodology" className="py-24 px-4" data-container="1">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text leading-16 mb-4">Metodologia</h2>
@@ -33,7 +33,7 @@ export const MethodologySection = () => {
           {methodologyCards.map((card, index) => (
             <motion.div key={card.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.2 }}>
               <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-lg h-full">
-                <CardContent className="pt-8 pb-6 text-center">
+                <CardContent className="py-6 px-3 text-center">
                   <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
                     <card.icon className="w-8 h-8 text-white" />
                   </div>
