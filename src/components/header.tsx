@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { label: "Início", id: 0, to: "hero" },
   { label: "Metodologia", id: 1, to: "methodology" },
   { label: "Biblioteca de Prompts", id: 2, to: "library" },
+  { label: "Tutorial", id: 3, to: "tutorial" },
 ];
 
 export const Header = () => {

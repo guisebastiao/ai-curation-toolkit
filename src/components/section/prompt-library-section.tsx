@@ -95,8 +95,8 @@ export const PromptLibrary = () => {
   };
 
   return (
-    <section id="library" className="py-24 px-4" data-container="2">
-      <div className="container mx-auto max-w-7xl">
+    <section id="library" className="w-full py-24 px-4" data-container="2">
+      <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Biblioteca de Prompts</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Prompts especializados. Selecione o tipo de conteúdo e siga as instruções.</p>

@@ -22,7 +22,7 @@ const methodologyCards = [
 
 export const MethodologySection = () => {
   return (
-    <section id="methodology" className="py-24 px-4" data-container="1">
+    <section id="methodology" className="w-full py-24 px-4" data-container="1">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text leading-16 mb-4">Metodologia</h2>
